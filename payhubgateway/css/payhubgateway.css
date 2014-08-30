@@ -36,6 +36,12 @@ fieldset label { clear: left; }
 .payhubgateway-badge { float: right; }
 .margin-form { margin-bottom: 5px; }
 
+/* admin page */
+div.get-payhub-credentials-section {
+	font-style: italic;
+	margin: 15px 0;
+}
+
 /* payment page */
 div.payhubgateway-payment-section { 
 	border: solid 1px #ddd;
@@ -44,7 +50,10 @@ div.payhubgateway-payment-section {
 	padding: 5px 20px 15px 20px;
 }
 
-div.payhubgateway-accepted-cards h3 { font-size: 1em; }
+div.payhubgateway-accepted-cards h3 { 
+	font-size: 1em;
+	text-align: right; 
+}
 
 #ph_security_image {
 	margin-top: -3px;
@@ -71,3 +80,10 @@ p.processing-error {
 }
 
 p.processing-error span { font-style: italic; }
+
+/* order completed/confirmation page */
+.order-message {
+        font-size: 1.8em;
+        font-weight: bold;
+        text-align: center;
+}

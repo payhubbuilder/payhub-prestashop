@@ -82,7 +82,7 @@ class PayHubGateway extends PaymentModule
 			$this->registerHook('payment') &&
 			$this->registerHook('header') &&
 			$this->registerHook('backOfficeHeader') &&
-			Configuration::updateValue('PAYHUB_GATEWAY_MODE', 1) &&
+			Configuration::updateValue('PAYHUB_GATEWAY_MODE', "demo") &&
 			Configuration::updateValue('PAYHUB_GATEWAY_CARD_VISA', 1) &&
 			Configuration::updateValue('PAYHUB_GATEWAY_CARD_MASTERCARD', 1) &&			
 			Configuration::updateValue('PAYHUB_GATEWAY_CARD_DISCOVER', 1);			
@@ -122,22 +122,6 @@ class PayHubGateway extends PaymentModule
 		$this->context->controller->addCSS($this->_path.'css/payhubgateway.css');
 	}
 
-	public function hookOrderConfirmation($params)
-	{
-		if ($params['objOrder']->module != $this->name)
-			return;
-
-		if ($params['objOrder']->getCurrentState() != Configuration::get('PS_OS_ERROR'))
-		{
-			Configuration::updateValue('PAYHUB_GATEWAY_CONFIGURATION_OK', true);
-			$this->context->smarty->assign(array('status' => 'ok', 'id_order' => intval($params['objOrder']->id)));
-		}
-		else
-			$this->context->smarty->assign('status', 'failed');
-
-		return $this->display(__FILE__, 'views/templates/hook/orderconfirmation.tpl');
-	}
-
 	public function hookBackOfficeHeader()
 	{
 		self::addAssets();
@@ -151,11 +135,11 @@ class PayHubGateway extends PaymentModule
 		{
 			$payhubgateway_mode = Tools::getvalue('payhubgateway_mode');
 			// Test environment
-			if ($payhubgateway_mode == "test")
+			if ($payhubgateway_mode == "demo")
 			{
-				Configuration::updateValue('PAYHUB_GATEWAY_MODE', 'test');
+				Configuration::updateValue('PAYHUB_GATEWAY_MODE', 'demo');
 			}
-			// Production environment
+			// Default to production environment
 			else
 			{
 				Configuration::updateValue('PAYHUB_GATEWAY_MODE', 'live');
@@ -258,6 +242,24 @@ class PayHubGateway extends PaymentModule
 		}
 	}
 
+	public function hookOrderConfirmation($params)
+	{
+		if ($params['objOrder']->module != $this->name)
+			return;
+
+		if ($params['objOrder']->getCurrentState() != Configuration::get('PS_OS_ERROR'))
+		{
+			Configuration::updateValue('PAYHUB_GATEWAY_CONFIGURATION_OK', true);
+			$this->context->smarty->assign(array('status' => 'ok', 'id_order' => intval($params['objOrder']->id)));
+		}
+		else
+			$this->context->smarty->assign('status', 'failed');
+
+		self::addAssets();
+
+		return $this->display(__FILE__, 'views/templates/hook/orderconfirmation.tpl');
+	}
+
 	public function hookHeader()
 	{
 		if (_PS_VERSION_ < '1.5')
@@ -268,10 +270,10 @@ class PayHubGateway extends PaymentModule
 
 	public function getTruncatedCard($card_num) 
 	{
-		if(strlen(card_num) > 4) 
-			return substr(card_num, -1, 4);
+		if(strlen($card_num) > 4) 
+			return substr($card_num, -4);
 		else 
-			return card_num;
+			return $card_num;
 	}
 
 	private function checkForUpdates()

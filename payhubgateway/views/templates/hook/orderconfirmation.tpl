@@ -22,12 +22,13 @@
 *}
 
 {if $status == 'ok'}
-	<p>{l s='Thank you for your order!  You will receive a confirmation email with details on your order.' mod='payhubgateway'}
+	<p class="order-message">
+		{l s='Thank you for your order!  You will receive a confirmation email with details on your order.' mod='payhubgateway'}
 		<br /><br />
 		{l s='For any questions or for further information, please contact our' mod='payhubgateway'} <a href="{$link->getPageLink('contact', true)}">{l s='customer support' mod='payhubgateway'}</a>.
 	</p>
 {else}
-	<p class="warning">
+	<p class="order-message">
 		{l s='We noticed a problem with your order. If you think this is an error, you can contact our' mod='payhubgateway'} 
 		<a href="{$link->getPageLink('contact', true)}">{l s='customer support' mod='payhubgateway'}</a>.
 	</p>

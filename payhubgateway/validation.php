@@ -64,7 +64,7 @@ if (!Validate::isLoadedObject($customer) || !Validate::isLoadedObject($invoiceAd
 }
 
 $params = array(
-	'mode' => Configuration::get('PAYHUB_GATEWAY_MODE') ? "demo" : "live",
+	'mode' => Configuration::get('PAYHUB_GATEWAY_MODE'),
 	'orgid' => Tools::safeOutput(Configuration::get('PAYHUB_GATEWAY_ORGID_'.$currency->iso_code)),
 	'username' => Tools::safeOutput(Configuration::get('PAYHUB_GATEWAY_USERNAME_'.$currency->iso_code)),
 	'password' => Tools::safeOutput(Configuration::get('PAYHUB_GATEWAY_PASSWORD_'.$currency->iso_code)),

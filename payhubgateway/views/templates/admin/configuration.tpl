@@ -21,21 +21,24 @@
 				{assign var='configuration_username_name' value="PAYHUB_GATEWAY_USERNAME_"|cat:$currency.iso_code}
 				{assign var='configuration_password_name' value="PAYHUB_GATEWAY_PASSWORD_"|cat:$currency.iso_code}
 				{assign var='configuration_tid_name' value="PAYHUB_GATEWAY_TID_"|cat:$currency.iso_code}
+				<div class="get-payhub-credentials-section">
+				**Your PayHub credentials can be found in Admin->3rd Party API page in your VirtualHub login.
+				</div>				
 				<table>
 					<tr>
 						<td>
-							<p>{l s='Credentials for' mod='payhubgateway'}<b> {$currency.iso_code}</b> {l s='currency' mod='payhubgateway'}</p>
+<!-- 							<p>{l s='Credentials for' mod='payhubgateway'}<b> {$currency.iso_code}</b> {l s='currency' mod='payhubgateway'}</p> -->
 							<label for="payhubgateway_orgid">{l s='Organization ID' mod='payhubgateway'}:</label>
-							<div class="margin-form" style="margin-bottom: 0px;"><input type="text" size="20" id="payhubgateway_orgid_{$currency.iso_code}" name="payhubgateway_orgid_{$currency.iso_code}" value="{${$configuration_orgid_name}}" /></div>
+							<div class="margin-form" style="margin-bottom: 0px;"><input type="text" size="20" id="payhubgateway_orgid_{$currency.iso_code}" name="payhubgateway_orgid_{$currency.iso_code}" value="{${$configuration_orgid_name}}" autocomplete="off" /></div>
 							<label for="payhubgateway_username">{l s='Username' mod='payhubgateway'}:</label>
-							<div class="margin-form" style="margin-bottom: 0px;"><input type="text" size="20" id="payhubgateway_username_{$currency.iso_code}" name="payhubgateway_username_{$currency.iso_code}" value="{${$configuration_username_name}}" /></div>
+							<div class="margin-form" style="margin-bottom: 0px;"><input type="text" size="20" id="payhubgateway_username_{$currency.iso_code}" name="payhubgateway_username_{$currency.iso_code}" value="{${$configuration_username_name}}" autocomplete="off" /></div>
 							<label for="payhubgateway_password">{l s='Password' mod='payhubgateway'}:</label>
-							<div class="margin-form" style="margin-bottom: 0px;"><input type="text" size="20" id="payhubgateway_password_{$currency.iso_code}" name="payhubgateway_password_{$currency.iso_code}" value="{${$configuration_password_name}}" /></div>
+							<div class="margin-form" style="margin-bottom: 0px;"><input type="text" size="20" id="payhubgateway_password_{$currency.iso_code}" name="payhubgateway_password_{$currency.iso_code}" value="{${$configuration_password_name}}" autocomplete="off" /></div>
 							<label for="payhubgateway_tid">{l s='Terminal ID' mod='payhubgateway'}:</label>
-							<div class="margin-form" style="margin-bottom: 0px;"><input type="text" size="20" id="payhubgateway_tid_{$currency.iso_code}" name="payhubgateway_tid_{$currency.iso_code}" value="{${$configuration_tid_name}}" /></div>
+							<div class="margin-form" style="margin-bottom: 0px;"><input type="text" size="20" id="payhubgateway_tid_{$currency.iso_code}" name="payhubgateway_tid_{$currency.iso_code}" value="{${$configuration_tid_name}}" autocomplete="off" /></div>
 						</td>
 					</tr>
-				<table><br />
+				<table>
 				<hr size="1" style="background: #BBB; margin: 0; height: 1px;" noshade /><br />
 			{/if}
 		{/foreach}
@@ -44,7 +47,7 @@
 		<div class="margin-form" id="payhubgateway_mode">
 			<input type="radio" name="payhubgateway_mode" value="live" style="vertical-align: middle;" {if $PAYHUB_GATEWAY_MODE == 'live'}checked="checked"{/if} />
 			<span>{l s='Live mode' mod='payhubgateway'}</span><br/>
-			<input type="radio" name="payhubgateway_mode" value="test" style="vertical-align: middle;" {if $PAYHUB_GATEWAY_MODE == 'test'}checked="checked"{/if} />
+			<input type="radio" name="payhubgateway_mode" value="demo" style="vertical-align: middle;" {if $PAYHUB_GATEWAY_MODE == 'demo'}checked="checked"{/if} />
 			<span>{l s='Test mode' mod='payhubgateway'}</span><br/>
 		</div>
 		<label for="payhubgateway_cards">{l s='Cards* :' mod='payhubgateway'}</label>

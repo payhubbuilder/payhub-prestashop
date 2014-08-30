@@ -27,7 +27,7 @@
 		<div class="col-xs-12 col-md-4">
 			<h2>{l s=' Pay by credit card' mod='payhubgateway'}</h1>
 		</div>
-		<div class="col-xs-12 col-md-offset-5 col-md-3">
+		<div class="col-xs-12 col-md-offset-4 col-md-4">
 			<div class="payhubgateway-accepted-cards">
 				<h3>We accept:&nbsp;&nbsp;
 				{if $cards.visa == 1}
@@ -85,7 +85,7 @@
 			<div class="form-group">
 				<label for="ph_card_num" class="col-xs-12 col-md-offset-2 col-md-3 control-label">{l s='Card number' mod='payhubgateway'}</label> 
 				<div class="col-xs-12 col-md-4">
-					<input class="form-control" type="text" name="ph_card_num" id="ph_card_num" maxlength="16" autocomplete="Off" />
+					<input class="form-control" type="text" name="ph_card_num" id="ph_card_num" maxlength="16" autocomplete="off" />
 					<span class="help-block error-state" style="display:none">{l s='This field is required and must contain a valid credit card number.' mod='payhubgateway'}</span>
 				</div>
 			</div>
@@ -107,14 +107,16 @@
 					</select>
 				</div>
 			</div>
-			<div class="form-group">
-				<a id="ph_cvv_help" href="{$module_dir}img/cvv.png">
-					<img src="{$module_dir}img/help.png" title="{l s='The 3 last digits on the back of your credit card' mod='payhubgateway'}" alt="?" />
-				</a>				
+			<div class="form-group">				
 				<label for="ph_card_cvv" class="col-xs-12 col-md-offset-2 col-md-3 control-label">{l s='CVV' mod='payhubgateway'}</label> 
-				<div class="col-xs-12 col-md-4">
-					<input class="form-control" type="text" name="ph_card_cvv" id="ph_card_cvv" size="4" maxlength="4" />			
+				<div class="col-xs-10 col-md-3">
+					<input class="form-control" type="text" name="ph_card_cvv" id="ph_card_cvv" size="4" maxlength="4" autocomplete="off" />			
 					<span class="help-block error-state" style="display:none">{l s='This field is required and must be either 3 or 4 digits.' mod='payhubgateway'}</span>
+				</div>
+				<div class="col-xs-2 col-md-1">
+					<a id="ph_cvv_help" href="{$module_dir}img/cvv.png">
+						<img src="{$module_dir}img/help.png" title="{l s='The 3 last digits on the back of your credit card' mod='payhubgateway'}" alt="?" />
+					</a>
 				</div>
 			</div>
 			<div class="form-group">
